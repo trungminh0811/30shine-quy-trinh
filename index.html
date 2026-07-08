@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Quy trình Tuyển dụng & Cấp mã — 30Shine (A4)</title>
 <style>
   :root{
@@ -38,7 +43,7 @@
     min-height:297mm;
     padding:11mm 10mm 9mm;
     box-shadow:0 2px 4px rgba(0,0,0,.12), 0 18px 40px -16px rgba(0,0,0,.35);
-    transform-origin:top center;
+    transform-origin:top left;
     display:flex;
     flex-direction:column;
   }
@@ -153,6 +158,8 @@
     @page{ size:A4 portrait; margin:0; }
   }
 </style>
+</head>
+<body>
 
 <div id="sheetOuter">
 <div class="sheet" id="sheet">
@@ -244,7 +251,8 @@
   function fit(){
     sheet.style.transform = 'scale(1)';
     var w = sheet.offsetWidth, h = sheet.offsetHeight;
-    var scale = Math.min(1, (window.innerWidth - 16) / w);
+    var vw = document.documentElement.clientWidth || window.innerWidth;
+    var scale = Math.min(1, (vw - 16) / w);
     sheet.style.transform = 'scale(' + scale + ')';
     outer.style.width = (w * scale) + 'px';
     outer.style.height = (h * scale) + 'px';
@@ -255,3 +263,5 @@
   setTimeout(fit, 200);
 })();
 </script>
+</body>
+</html>
