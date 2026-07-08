@@ -1,0 +1,257 @@
+<title>Quy trình Tuyển dụng & Cấp mã — 30Shine (A4)</title>
+<style>
+  :root{
+    --backdrop:#DAD5C8;
+    --paper:#FBFAF6;
+    --ink:#2A2521;
+    --ink-muted:#645C4F;
+    --ink-faint:#8B8272;
+    --line:#DCD7C9;
+    --line-strong:#C7C1AF;
+    --accent:#AE3A2C;
+
+    --sm:#8C5F19;   --sm-tint:#F5EBD2;
+    --gdkv:#1D5A66; --gdkv-tint:#DCEDEF;
+    --td:#2C6B48;   --td-tint:#DFF0E4;
+    --dt:#7B3453;   --dt-tint:#F3E0E9;
+    --auto:#5C6570; --auto-tint:#EAEAE4;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --backdrop:#0E0D0C; --paper:#221F1B; --ink:#F1ECE1; --ink-muted:#B3A992; --ink-faint:#7C755F; --line:#3A362D; --line-strong:#4A4536; }
+  }
+  :root[data-theme="dark"]{ --backdrop:#0E0D0C; --paper:#221F1B; --ink:#F1ECE1; --ink-muted:#B3A992; --ink-faint:#7C755F; --line:#3A362D; --line-strong:#4A4536; }
+  :root[data-theme="light"]{ --backdrop:#DAD5C8; --paper:#FBFAF6; --ink:#2A2521; --ink-muted:#645C4F; --ink-faint:#8B8272; --line:#DCD7C9; --line-strong:#C7C1AF; }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--backdrop);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  #sheetOuter{ margin:16px auto 32px; }
+
+  .sheet{
+    background:var(--paper);
+    color:var(--ink);
+    width:210mm;
+    min-height:297mm;
+    padding:11mm 10mm 9mm;
+    box-shadow:0 2px 4px rgba(0,0,0,.12), 0 18px 40px -16px rgba(0,0,0,.35);
+    transform-origin:top center;
+    display:flex;
+    flex-direction:column;
+  }
+
+  /* ---------- Header ---------- */
+  .head{ margin-bottom:5mm; padding-bottom:4mm; border-bottom:1.4px solid var(--ink); }
+  .eyebrow{ font-size:8.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 2mm; }
+  .head h1{ font-size:19px; margin:0 0 1.6mm; font-weight:800; letter-spacing:-.01em; }
+  .head .sub{ font-size:9.5px; color:var(--ink-muted); margin:0 0 3mm; }
+  .legend{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:2mm 4mm; }
+  .legend li{ display:flex; align-items:center; gap:1.4mm; font-size:8px; font-weight:700; color:var(--ink-muted); }
+  .legend .sw{ width:2.4mm; height:2.4mm; border-radius:.6mm; flex:none; }
+  .legend .sw.auto{ border-radius:50%; background:none; border:.5mm dashed var(--auto); width:2mm; height:2mm; }
+  .cta{
+    display:inline-flex; align-items:center; gap:1.6mm;
+    background:var(--accent); color:#fff;
+    font-size:8.6px; font-weight:800;
+    padding:2mm 3.6mm; border-radius:100px;
+    text-decoration:none; margin-top:3.4mm;
+    box-shadow:0 2px 5px -1px rgba(174,58,44,.45);
+  }
+  .cta svg{ width:8px; height:8px; flex:none; }
+  .cta:hover{ opacity:.88; }
+
+  /* ---------- Table ---------- */
+  .table{
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-top:1px solid var(--ink);
+    border-left:1px solid var(--ink);
+  }
+  .colhead{
+    color:#fff;
+    padding:2mm 1.6mm; text-align:center;
+    border-right:1.5px solid var(--paper);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.3mm;
+  }
+  .colhead .code{ font-size:8.4px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; line-height:1.2; }
+  .colhead .full{ font-size:6.6px; font-weight:600; opacity:.9; line-height:1.15; }
+  .colhead:nth-child(1){ background:var(--sm); }
+  .colhead:nth-child(2){ background:var(--gdkv); }
+  .colhead:nth-child(3){ background:var(--td); }
+  .colhead:nth-child(4){ background:var(--dt); }
+  .colhead:nth-child(5){ background:var(--auto); border-right:none; }
+
+  .cell{ border-top:2.6px solid transparent; }
+  .col-sm{ border-top-color:var(--sm); }
+  .col-gdkv{ border-top-color:var(--gdkv); }
+  .col-td{ border-top-color:var(--td); }
+  .col-dt{ border-top-color:var(--dt); }
+  .col-auto{ border-top-color:var(--auto); }
+
+  .bar{
+    grid-column:1 / -1;
+    display:flex; align-items:baseline; gap:2.4mm;
+    background:var(--line);
+    padding:1.8mm 2.4mm;
+    border-right:1px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+    margin-top:2.4mm;
+  }
+  .bar .n{ font-size:9.5px; font-weight:800; color:var(--accent); letter-spacing:.04em; text-transform:uppercase; }
+  .bar .t{ font-size:11.5px; font-weight:800; }
+  .bar .s{ font-size:8.4px; color:var(--ink-muted); }
+  .cell .sub2{ font-size:8.6px; font-weight:800; margin:1.6mm 0 1mm; }
+  .cell .sub2:first-child{ margin-top:0; }
+  .cell .intro{ font-size:8px; color:var(--ink-faint); margin:0 0 1mm; font-style:italic; }
+
+  .cell{
+    border-right:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:2mm 1.8mm;
+    font-size:8.4px;
+    line-height:1.35;
+  }
+  .cell.empty{
+    background:repeating-linear-gradient(135deg, var(--line) 0, var(--line) .4px, transparent .4px, transparent 2.4mm);
+    opacity:.5;
+  }
+  .cell.auto{ background:var(--auto-tint); }
+  .cell-sm{ background:var(--sm-tint); }
+  .cell-gdkv{ background:var(--gdkv-tint); }
+  .cell-td{ background:var(--td-tint); }
+  .cell-dt{ background:var(--dt-tint); }
+
+  .cell h4{ font-size:8.6px; margin:0 0 1mm; font-weight:800; line-height:1.25; }
+  .cell ul{ margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:.7mm; }
+  .cell li{ position:relative; padding-left:2.4mm; }
+  .cell li::before{ content:"–"; position:absolute; left:0; top:0; color:var(--ink-faint); }
+  .pill{ display:inline-block; font-size:7px; font-weight:800; padding:.4mm 1.6mm; border-radius:1mm; margin-top:1mm; margin-right:1mm; color:#fff; }
+  .pill.yes{ background:var(--td); }
+  .pill.no{ background:var(--dt); }
+  .timing{ display:block; font-size:6.8px; font-weight:700; color:var(--ink-faint); margin-bottom:.8mm; }
+  .link{
+    display:flex; align-items:center; gap:.9mm;
+    font-size:7.2px; font-weight:800; color:#fff;
+    background:var(--accent);
+    text-decoration:none; margin-top:1.3mm;
+    width:fit-content;
+    padding:.9mm 2mm; border-radius:100px;
+    box-shadow:0 1px 0 rgba(0,0,0,.15);
+  }
+  .link:hover{ opacity:.85; }
+  .link svg{ width:6.5px; height:6.5px; flex:none; }
+
+  .foot-credit{ margin-top:auto; padding-top:6mm; font-size:7.4px; color:var(--ink-faint); text-align:right; }
+
+  @media print{
+    body{ background:none; }
+    #sheetOuter{ margin:0; width:auto !important; height:auto !important; }
+    .sheet{ box-shadow:none; width:210mm; min-height:0; height:297mm; transform:none !important; }
+    @page{ size:A4 portrait; margin:0; }
+  }
+</style>
+
+<div id="sheetOuter">
+<div class="sheet" id="sheet">
+
+  <div class="head">
+    <p class="eyebrow">30Shine · Vận hành Salon</p>
+    <h1>Quy trình Tuyển dụng &amp; Cấp mã nhân viên</h1>
+    <p class="sub">Ai làm gì, ở giai đoạn nào — từ tiếp nhận ứng viên đến khi có mã nhân sự.</p>
+    <ul class="legend">
+      <li><span class="sw" style="background:var(--sm)"></span>SM · Salon Manager</li>
+      <li><span class="sw" style="background:var(--gdkv)"></span>GĐKV · Giám đốc Khu vực</li>
+      <li><span class="sw" style="background:var(--td)"></span>TD · Tuyển dụng</li>
+      <li><span class="sw" style="background:var(--dt)"></span>ĐTCM · Bộ phận Đào tạo</li>
+      <li><span class="sw auto"></span>Hệ thống tự động</li>
+    </ul>
+    <a class="cta" href="https://thirtyshine.sg.larksuite.com/base/C4HHbDeHgajyCWsjyOZlGPsXgKg?table=tblOTbUw79tGZQRH&view=vewSWbDrYF" target="_blank" rel="noopener">Hệ thống Tuyển dụng &amp; Đánh giá tay nghề — theo dõi hành trình ứng viên<svg viewBox="0 0 20 20" fill="none"><path d="M7 13L13 7M13 7H8M13 7V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+
+  <div class="table">
+    <div class="colhead"><span class="code">SM</span><span class="full">Salon Manager</span></div>
+    <div class="colhead"><span class="code">GĐKV</span><span class="full">Giám đốc Khu vực</span></div>
+    <div class="colhead"><span class="code">TD</span><span class="full">Tuyển dụng</span></div>
+    <div class="colhead"><span class="code">ĐTCM</span><span class="full">Bộ phận Đào tạo</span></div>
+    <div class="colhead"><span class="code">Hệ thống tự động</span></div>
+
+    <!-- STAGE 1 -->
+    <div class="bar"><span class="n">Giai đoạn 01</span><span class="t">Tiếp nhận thông tin</span><span class="s">— Đăng ký ứng viên</span></div>
+    <div class="cell col-sm cell-sm"><h4>Điền thông tin ƯV</h4><ul><li>Nhập Form thông tin cơ bản</li><li>TD nắm ngay khi SM điền</li></ul><a class="link" href="https://thirtyshine.sg.larksuite.com/share/base/form/shrlgK2yKZB32F9dBCXYGBYz7xf" target="_blank" rel="noopener">Mở Form<svg viewBox="0 0 20 20" fill="none"><path d="M7 13L13 7M13 7H8M13 7V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    <div class="cell col-gdkv empty"></div>
+    <div class="cell col-td cell-td"><h4>Điền thông tin ƯV</h4><ul><li>Nhập Base Tuyển dụng</li><li>SM nắm ngay khi TD điền</li></ul><a class="link" href="https://thirtyshine.sg.larksuite.com/share/base/form/shrlgK2yKZB32F9dBCXYGBYz7xf" target="_blank" rel="noopener">Mở Form<svg viewBox="0 0 20 20" fill="none"><path d="M7 13L13 7M13 7H8M13 7V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    <div class="cell col-dt empty"></div>
+    <div class="cell col-auto auto"><h4>Gửi thông báo</h4><ul><li>2 bên tự đồng bộ khi 1 bên điền</li><li>Nhắc SM nếu TD chưa phân công</li></ul></div>
+
+    <!-- STAGE 2 -->
+    <div class="bar"><span class="n">Giai đoạn 02</span><span class="t">Phỏng vấn</span><span class="s">— Đặt lịch &amp; báo kết quả</span></div>
+    <div class="cell col-sm cell-sm"><h4>Lên lịch, tổ chức PV &amp; báo KQ</h4><ul><li>Lên lịch, PV tại salon</li><li>Gửi/nhận kết quả</li></ul><span class="pill yes">Đạt PV</span><span class="pill no">Không đạt</span></div>
+    <div class="cell col-gdkv empty"></div>
+    <div class="cell col-td empty"></div>
+    <div class="cell col-dt empty"></div>
+    <div class="cell col-auto auto"><h4>Nhắc cập nhật PV</h4><ul><li>SM cập nhật trạng thái PV của ƯV</li><li>Ghi nhận "Đạt phỏng vấn" / "Không đạt phỏng vấn"</li></ul></div>
+
+    <!-- STAGE 3 -->
+    <div class="bar"><span class="n">Giai đoạn 03</span><span class="t">Phân công</span><span class="s">— Chuyển sang đào tạo</span></div>
+    <div class="cell col-sm cell-sm"><h4>Cập nhật trạng thái đào tạo</h4><ul><li>ID + Tên Master</li><li>Ngày BĐ / hoàn thành (dự kiến)</li><li>Đánh dấu sẵn sàng test</li></ul></div>
+    <div class="cell col-gdkv empty"></div>
+    <div class="cell col-td empty"></div>
+    <div class="cell col-dt empty"></div>
+    <div class="cell col-auto auto"><h4>Gửi thông tin cập nhật</h4><ul><li>Master khi đạt PV</li><li>Trạng thái ĐT dự kiến</li></ul></div>
+
+    <!-- STAGE 4 -->
+    <div class="bar"><span class="n">Giai đoạn 04</span><span class="t">Đào tạo / Test tay nghề</span><span class="s">— Đánh giá năng lực</span></div>
+    <div class="cell col-sm cell-sm"><h4>Cập nhật trạng thái ĐT</h4><ul><li>Hướng dẫn Test tay nghề</li><li>Điền KQ bài test</li><li>ƯV làm Test đầu vào</li></ul><a class="link" href="https://thirtyshine.sg.larksuite.com/wiki/G5RiwNfgpigsHsk9zY3lUKS7gVc?fromScene=spaceOverview" target="_blank" rel="noopener">HD test Stylist<svg viewBox="0 0 20 20" fill="none"><path d="M7 13L13 7M13 7H8M13 7V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="link" href="https://thirtyshine.sg.larksuite.com/wiki/Qi6vwvleCibLWVkGGdylFyHsgBg?fromScene=spaceOverview" target="_blank" rel="noopener">HD test Skinner<svg viewBox="0 0 20 20" fill="none"><path d="M7 13L13 7M13 7H8M13 7V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a><a class="link" href="https://thirtyshine.sg.larksuite.com/share/base/query/shrlgYQb4jLVYrq0SWSVoO0M9gc" target="_blank" rel="noopener">Gửi link bài test<svg viewBox="0 0 20 20" fill="none"><path d="M7 13L13 7M13 7H8M13 7V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    <div class="cell col-gdkv empty"></div>
+    <div class="cell col-td empty"></div>
+    <div class="cell col-dt cell-dt"><h4>Đánh giá năng lực ƯV</h4><ul><li>Chấm theo khung Tiêu chí Học việc &amp; Kỹ năng</li></ul><a class="link" href="https://thirtyshine.sg.larksuite.com/base/L7sTbFiLwaQC67sZz0XlXfAegcb?table=tblQQdBQuWE362JH&view=vewYWpv1gq" target="_blank" rel="noopener">Theo dõi học việc &amp; KQ<svg viewBox="0 0 20 20" fill="none"><path d="M7 13L13 7M13 7H8M13 7V12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+    <div class="cell col-auto auto"><span class="timing">⏱ 13:00 &amp; 22:00</span><h4>Đồng bộ Base TD → Theo dõi</h4><ul><li>Cần ID + Tên Master</li><li>Đồng bộ KQ từ Google Form</li></ul></div>
+
+    <!-- STAGE 5 -->
+    <div class="bar"><span class="n">Giai đoạn 05</span><span class="t">Gửi hồ sơ &amp; Duyệt bậc</span><span class="s">— Tạo mã nhân sự</span></div>
+    <div class="cell col-sm cell-sm">
+      <h4>Cung cấp hồ sơ tạo mã</h4>
+      <ul><li>Ảnh CCCD + Ảnh chân dung</li><li>Phiếu xác nhận thu thập hồ sơ cá nhân</li><li>Phiếu cam kết làm việc dưới hình thức ƯV chưa đủ tuổi (nếu ƯV chưa đủ tuổi)</li></ul>
+      <div class="sub2">Đề xuất bậc nhân sự</div>
+      <ul><li>Đề xuất bậc cho phù hợp để GĐKV duyệt</li></ul>
+    </div>
+    <div class="cell col-gdkv cell-gdkv"><h4>Duyệt bậc nhân sự</h4><p class="intro">Ra quyết định:</p><ul><li>Đồng ý với bậc do SM đề xuất</li><li>Không đồng ý với bậc do SM đề xuất</li></ul><span class="pill yes">Duyệt đề xuất</span><span class="pill no">Đề xuất khác</span></div>
+    <div class="cell col-td cell-td"><h4>Tạo mã nhân sự</h4><ul><li>Xác nhận hồ sơ đủ điều kiện</li><li>Tạo mã trên ERP</li><li>Điền ID + TK/MK trên Lark Base</li><li>Cập nhật hành trình TD</li></ul></div>
+    <div class="cell col-dt empty"></div>
+    <div class="cell col-auto auto"><h4>Gửi thông báo</h4><ul><li>SM: khi đủ điều kiện</li><li>GĐKV: khi cần duyệt bậc</li><li>TD: khi GĐKV đã duyệt</li></ul></div>
+
+    <!-- STAGE 6 -->
+    <div class="bar"><span class="n">Giai đoạn 06</span><span class="t">Kết quả đánh giá</span><span class="s">— Bàn giao tài khoản</span></div>
+    <div class="cell col-sm cell-sm"><h4>Nhận tài khoản nhân sự</h4><ul><li>Hệ thống gửi qua Lark</li><li>SM copy &amp; bàn giao nhân sự</li></ul></div>
+    <div class="cell col-gdkv empty"></div>
+    <div class="cell col-td empty"></div>
+    <div class="cell col-dt empty"></div>
+    <div class="cell col-auto auto"><h4>Gửi thông báo</h4><ul><li>SM: khi TD cập nhật xong TK</li></ul></div>
+  </div>
+
+  <p class="foot-credit">Trình bày lại từ tài liệu quy trình nội bộ 30Shine · 07/07/2026</p>
+
+</div>
+</div>
+
+<script>
+(function(){
+  var sheet = document.getElementById('sheet');
+  var outer = document.getElementById('sheetOuter');
+  function fit(){
+    sheet.style.transform = 'scale(1)';
+    var w = sheet.offsetWidth, h = sheet.offsetHeight;
+    var scale = Math.min(1, (window.innerWidth - 16) / w);
+    sheet.style.transform = 'scale(' + scale + ')';
+    outer.style.width = (w * scale) + 'px';
+    outer.style.height = (h * scale) + 'px';
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('load', fit);
+  fit();
+  setTimeout(fit, 200);
+})();
+</script>
