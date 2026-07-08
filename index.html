@@ -14,6 +14,7 @@
     --line:#DCD7C9;
     --line-strong:#C7C1AF;
     --accent:#AE3A2C;
+    --accent-text:#AE3A2C;
 
     --sm:#8C5F19;   --sm-tint:#F5EBD2;
     --gdkv:#1D5A66; --gdkv-tint:#DCEDEF;
@@ -22,10 +23,22 @@
     --auto:#5C6570; --auto-tint:#EAEAE4;
   }
   @media (prefers-color-scheme: dark){
-    :root{ --backdrop:#0E0D0C; --paper:#221F1B; --ink:#F1ECE1; --ink-muted:#B3A992; --ink-faint:#7C755F; --line:#3A362D; --line-strong:#4A4536; }
+    :root{
+      --backdrop:#0E0D0C; --paper:#221F1B; --ink:#F1ECE1; --ink-muted:#B3A992; --ink-faint:#7C755F; --line:#3A362D; --line-strong:#4A4536;
+      --accent-text:#E28A73;
+      --sm-tint:#3A2C14; --gdkv-tint:#173238; --td-tint:#193322; --dt-tint:#3A2130; --auto-tint:#2A2C2A;
+    }
   }
-  :root[data-theme="dark"]{ --backdrop:#0E0D0C; --paper:#221F1B; --ink:#F1ECE1; --ink-muted:#B3A992; --ink-faint:#7C755F; --line:#3A362D; --line-strong:#4A4536; }
-  :root[data-theme="light"]{ --backdrop:#DAD5C8; --paper:#FBFAF6; --ink:#2A2521; --ink-muted:#645C4F; --ink-faint:#8B8272; --line:#DCD7C9; --line-strong:#C7C1AF; }
+  :root[data-theme="dark"]{
+    --backdrop:#0E0D0C; --paper:#221F1B; --ink:#F1ECE1; --ink-muted:#B3A992; --ink-faint:#7C755F; --line:#3A362D; --line-strong:#4A4536;
+    --accent-text:#E28A73;
+    --sm-tint:#3A2C14; --gdkv-tint:#173238; --td-tint:#193322; --dt-tint:#3A2130; --auto-tint:#2A2C2A;
+  }
+  :root[data-theme="light"]{
+    --backdrop:#DAD5C8; --paper:#FBFAF6; --ink:#2A2521; --ink-muted:#645C4F; --ink-faint:#8B8272; --line:#DCD7C9; --line-strong:#C7C1AF;
+    --accent-text:#AE3A2C;
+    --sm-tint:#F5EBD2; --gdkv-tint:#DCEDEF; --td-tint:#DFF0E4; --dt-tint:#F3E0E9; --auto-tint:#EAEAE4;
+  }
 
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
@@ -50,7 +63,7 @@
 
   /* ---------- Header ---------- */
   .head{ margin-bottom:5mm; padding-bottom:4mm; border-bottom:1.4px solid var(--ink); }
-  .eyebrow{ font-size:8.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 2mm; }
+  .eyebrow{ font-size:8.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-text); font-weight:700; margin:0 0 2mm; }
   .head h1{ font-size:19px; margin:0 0 1.6mm; font-weight:800; letter-spacing:-.01em; }
   .head .sub{ font-size:9.5px; color:var(--ink-muted); margin:0 0 3mm; }
   .legend{ list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:2mm 4mm; }
@@ -105,7 +118,7 @@
     border-bottom:1px solid var(--ink);
     margin-top:2.4mm;
   }
-  .bar .n{ font-size:9.5px; font-weight:800; color:var(--accent); letter-spacing:.04em; text-transform:uppercase; }
+  .bar .n{ font-size:9.5px; font-weight:800; color:var(--accent-text); letter-spacing:.04em; text-transform:uppercase; }
   .bar .t{ font-size:11.5px; font-weight:800; }
   .bar .s{ font-size:8.4px; color:var(--ink-muted); }
   .cell .sub2{ font-size:8.6px; font-weight:800; margin:1.6mm 0 1mm; }
